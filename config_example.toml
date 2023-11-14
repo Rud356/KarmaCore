@@ -1,0 +1,36 @@
+[karmacore]
+    # Base karma level for users
+    base_karma = 50
+
+    [superusers]
+        [user2]
+            user_id = 42
+            from_source = "extension1"
+
+        [user3]
+            user_id = 433
+            password = "42"
+            from_source = "extension2"
+
+[database]
+url = "sqlite://"
+
+[logging]
+
+[extensions]
+    # Every extension represents some kind of source.
+    [extension1]
+        enabled = true
+        # This parameter is defaults for this specific plugin, but it doesn't affect
+        # how restrictions are applied. It is customized by every plugin using it's own logic.
+        restrict_after_negative_karma_below = 100
+
+        # List of any triggers that needed for plugins functioning
+        # but plugin itself manages how to parse them.
+        triggers_sources = ["triggers_positive.csv", "triggers_negative.csv"]
+
+    [extension2]
+        enabled = true
+        restrict_after_negative_karma_below = 150
+        other_param = "value 2"
+        triggers_sources = []

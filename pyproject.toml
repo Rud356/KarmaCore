@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ConfigFramework"
+dynamic = ["version"]
+readme = "README.md"
+authors = [
+    {name = "Rud356", email = "rud356github@gmail.com"},
+]
+description = "A small framework to build your flexible project configurations"
+requires-python = ">=3.11.0"
+keywords = ["moderation", "karma moderation"]
+license = {text = "Apache-2.0"}
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+]
+dependencies = [
+    "sqlalchemy~=2.0.23",
+    "alembic~=1.12.1"
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "karmacore.__init__.__version__"}
+
+
+[tool.setuptools.packages.find]
+where = ["./"]
+include = ["karmacore*"]
+exclude = ["tests", "examples"]
+
+[project.optional-dependencies]
+mypy = ["mypy"]
+dev = ["sphinx~=5.0.2", "sphinx-rtd-theme~=1.0.0", "Pygments~=2.12.0"]
